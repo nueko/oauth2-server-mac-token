@@ -33,11 +33,7 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
         return 'MAC';
     }
 
-    public function isAccessTokenValid(Request $request, IOAuth2AccessToken $token) {
-
-        if( !$token instanceof IOAuth2MACAccessToken) {
-            return false;
-        }
+    protected function getValues(Request $request) {
 
         $values = $this->getMACTokenFromHeaders($request);
         if($values === null) {
@@ -46,6 +42,19 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
 
         if( !isset($values['id']) || !isset($values['nonce']) || !isset($values['mac'])) {
             return false;
+        }
+        return $values;
+    }
+
+    public function isAccessTokenValid(Request $request, IOAuth2AccessToken $token) {
+
+        if( !$token instanceof IOAuth2MACAccessToken) {
+            return false;
+        }
+
+        $values = $this->getValues($request);
+        if(!$values) {
+            return $values;
         }
 
         if($values['id'] !== $token->getToken() || $token->hasExpired()) {
