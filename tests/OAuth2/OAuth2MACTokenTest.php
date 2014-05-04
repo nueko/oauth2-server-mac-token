@@ -17,18 +17,18 @@ class OAuth2MACTokenTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($token1->toArray(), array(
            'access_token' => 'jd93dh9dh39D',
-           'token_type' => 'MAC',
+           'token_type' => 'mac',
            'expires_in' => 1000,
-           'key' => '8yfrufh348h',
-           'algorithm' => 'hmac-sha-1',
+           'mac_key' => '8yfrufh348h',
+           'mac_algorithm' => 'hmac-sha-1',
            'scope' => 'foo bar baz',
         ));
         $this->assertEquals($token2->toArray(), array(
            'access_token' => 'jd93dh9dh39D',
-           'token_type' => 'MAC',
+           'token_type' => 'mac',
            'expires_in' => 1000,
-           'key' => '8yfrufh348h',
-           'algorithm' => 'hmac-sha-256',
+           'mac_key' => '8yfrufh348h',
+           'mac_algorithm' => 'hmac-sha-256',
            'scope' => 'foo bar baz',
         ));
 

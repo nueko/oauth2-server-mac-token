@@ -40,9 +40,9 @@ class OAuth2MACAccessToken extends OAuth2AccessToken implements IOAuth2MACAccess
     public function toArray()
     {
         return parent::toArray()+array(
-           'token_type' => 'MAC',
-           'key' => $this->getKey(),
-           'algorithm' => self::convertAlgorithm($this->getAlgorithm()),
+           'token_type' => 'mac',
+           'mac_key' => $this->getKey(),
+           'mac_algorithm' => self::convertAlgorithm($this->getAlgorithm()),
         );
     }
 

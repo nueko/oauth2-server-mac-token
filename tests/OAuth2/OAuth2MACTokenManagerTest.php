@@ -25,10 +25,10 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('MAC', $manager1->getAccessTokenType());
 
         $token = $manager1->createAccessToken($client)->toArray();
-        $this->assertSame('hmac-sha-1', $token['algorithm']);
+        $this->assertSame('hmac-sha-1', $token['mac_algorithm']);
 
         $token = $manager2->createAccessToken($client)->toArray();
-        $this->assertSame('hmac-sha-256', $token['algorithm']);
+        $this->assertSame('hmac-sha-256', $token['mac_algorithm']);
 
         try {
             $token = $manager3->createAccessToken($client);
