@@ -6,6 +6,7 @@ use OAuth2\Client\IOAuth2Client;
 use OAuth2\Token\IOAuth2AccessTokenManager;
 use Symfony\Component\HttpFoundation\Request;
 use OAuth2\Util\OAuth2Header;
+use OAuth2\Exception\OAuth2InternalServerErrorException;
 
 class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IOAuth2AccessTokenManager
 {
@@ -18,11 +19,12 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
     public function createAccessToken(IOAuth2Client $client, $scope = null, $data = null) {
 
         $token = $this->generator->getRandomString(20);
-        $key = $this->generator->getRandomString(10);
+        $key   = $this->generator->getRandomString(10);
+        $algo  = $this->configuration->getOption('mac_access_token_algorithm', 'sha1');
         if($token === false || $key === false) {
-            throw new OAuth2InternalServerErrorException('mac_access_token_creation_error', 'An error has occured during the creation of the token.');
+            throw new OAuth2InternalServerErrorException('access_token_creation_error', 'An error has occured during the creation of the token.');
         }
-        $this->accessTokens[$token] = new OAuth2MACAccessToken($client, $token, $key, 'sha256', time() + $this->getLifetime($client), $scope, $data);
+        $this->accessTokens[$token] = new OAuth2MACAccessToken($client, $token, $key, $algo, time() + $this->getLifetime($client), $scope, $data);
         return $this->accessTokens[$token];
         
     }
@@ -51,7 +53,11 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
         }
 
         if (isset($values['bodyhash'])) {
-            $bodyhash = base64_encode(hash($token->getAlgorithm(), $request->getContent(), true));
+            $content = $request->getContent();
+            if (!is_string($content)) {
+                return false;
+            }
+            $bodyhash = base64_encode(hash($token->getAlgorithm(), $content, true));
             if($values['bodyhash'] !== $bodyhash) {
                 return false;
             }
