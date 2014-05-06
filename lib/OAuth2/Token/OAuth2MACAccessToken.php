@@ -6,6 +6,7 @@ use OAuth2\Token\OAuth2AccessToken;
 use OAuth2\Token\IOAuth2MACAccessToken;
 use OAuth2\Client\IOAuth2Client;
 use OAuth2\Exception\OAuth2NotImplementedException;
+use OAuth2\ResourceOwner\IOAuth2ResourceOwner;
 
 class OAuth2MACAccessToken extends OAuth2AccessToken implements IOAuth2MACAccessToken
 {
@@ -14,19 +15,19 @@ class OAuth2MACAccessToken extends OAuth2AccessToken implements IOAuth2MACAccess
     protected $algorithm;
 
     /**
-     * @param IOAuth2Client $client_id
-     * @param string        $token
-     * @param string        $key
-     * @param string        $algorithm
-     * @param null|integer  $expiresAt
-     * @param null|string   $scope
-     * @param string|null   $data
+     * @param IOAuth2Client        $client_id
+     * @param string               $token
+     * @param string               $key
+     * @param string               $algorithm
+     * @param null|integer         $expiresAt
+     * @param null|string          $scope
+     * @param IOAuth2ResourceOwner $resourceOwner
      */
-    public function __construct(IOAuth2Client $client_id, $token, $key, $algorithm, $expiresAt = null, $scope = null, $data = null)
+    public function __construct(IOAuth2Client $client_id, $token, $key, $algorithm, $expiresAt = null, $scope = null, IOAuth2ResourceOwner $resourceOwner = null)
     {
         $this->key = $key;
         $this->algorithm = $algorithm;
-        parent::__construct($client_id, $token, $expiresAt, $scope, $data);
+        parent::__construct($client_id, $token, $expiresAt, $scope, $resourceOwner);
     }
 
     public function getKey() {
