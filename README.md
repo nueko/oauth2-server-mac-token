@@ -40,3 +40,28 @@ The preferred way to install this bundle is to rely on Composer. Just check on P
     }
 
 ##Step 2: Create your classes##
+
+This library provides classes that you can use as it is or you can extend with your own methods.
+
+* Manager Class: `OAuth2\Token\OAuth2MACAccessTokenManager`
+* Access Token Class: `OAuth2\Token\OAuth2MACAccessToken`
+
+
+##Step 3: Add the token type to your OAuth2 Server##
+
+To use this token type, just create a new manager object and use it with your server:
+
+    <?php
+
+    namespace ACME\MyOAuth2Server
+
+    use OAuth2\OAuth2;
+    use OAuth2\Token\OAuth2MACAccessToken;
+
+    …
+
+    //Create your manager. Our class needs a configuration object (for token lifetime, length…) and a token generator.
+    $accessTokenManager = new OAuth2MACAccessToken($configuration, $generator);
+
+    //Start your server
+    $server = new OAuth2($configuration, $clientManagers, $supportedGrantTypes, $scopeManager, $accessTokenManager, $refreshTokenManager);
