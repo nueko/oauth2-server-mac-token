@@ -4,6 +4,7 @@ namespace OAuth2;
 
 use OAuth2\Token\OAuth2MACAccessToken;
 use OAuth2\Client\OAuth2PublicClient;
+use OAuth2\ResourceOwner\OAuth2ResourceOwner;
 use OAuth2\Exception\OAuth2NotImplementedException;
 
 class OAuth2MACTokenTest extends \PHPUnit_Framework_TestCase
@@ -11,9 +12,11 @@ class OAuth2MACTokenTest extends \PHPUnit_Framework_TestCase
     public function testArray()
     {
         $client = new OAuth2PublicClient("foo");
-        $token1 = new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data');
-        $token2 = new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha256', time() + 1000, 'foo bar baz', 'data');
-        $token3 = new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'foo', time() + 1000, 'foo bar baz', 'data');
+        $owner = new OAuth2ResourceOwner('username', 'secret');
+
+        $token1 = new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner);
+        $token2 = new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha256', time() + 1000, 'foo bar baz', $owner);
+        $token3 = new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'foo', time() + 1000, 'foo bar baz', $owner);
 
         $this->assertEquals($token1->toArray(), array(
            'access_token' => 'jd93dh9dh39D',

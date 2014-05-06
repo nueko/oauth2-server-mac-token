@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use OAuth2\Token\OAuth2TestGenerator;
 use OAuth2\Token\OAuth2DummyGenerator;
 use OAuth2\Exception\OAuth2InternalServerErrorException;
+use OAuth2\ResourceOwner\OAuth2ResourceOwner;
 
 class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +33,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
 
         try {
             $token = $manager3->createAccessToken($client);
-            $this->fail("The expected exception '$exception' was not thrown");
+            $this->fail("The expected exception was not thrown");
         } catch (\Exception $e) {
             if(!$e instanceof OAuth2InternalServerErrorException){
                 throw $e;
@@ -63,9 +64,11 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
     public function getTestAccessTokenData()
     {
         $client = new OAuth2PublicClient("foo");
+        $owner = new OAuth2ResourceOwner('username', 'secret');
+
         return array(
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -80,7 +83,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 true,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -95,7 +98,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 true,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -110,7 +113,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 true,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -125,7 +128,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 true,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha256', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha256', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -140,7 +143,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 true,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha256', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha256', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -155,7 +158,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 true,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -168,7 +171,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 false,
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -183,7 +186,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 false
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -198,7 +201,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 false
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',
@@ -213,7 +216,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
                 false
             ),
             array(
-                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', 'data'),
+                new OAuth2MACAccessToken($client, 'jd93dh9dh39D', '8yfrufh348h', 'sha1', time() + 1000, 'foo bar baz', $owner),
                 $this->createRequest(
                     '/request',
                     'POST',

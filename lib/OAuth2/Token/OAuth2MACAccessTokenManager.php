@@ -7,6 +7,7 @@ use OAuth2\Token\IOAuth2AccessTokenManager;
 use Symfony\Component\HttpFoundation\Request;
 use OAuth2\Util\OAuth2Header;
 use OAuth2\Exception\OAuth2InternalServerErrorException;
+use OAuth2\ResourceOwner\IOAuth2ResourceOwner;
 
 class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IOAuth2AccessTokenManager
 {
@@ -16,7 +17,7 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
         return isset($values['id'])?array($values['id']):null;
     }
 
-    public function createAccessToken(IOAuth2Client $client, $scope = null, $data = null) {
+    public function createAccessToken(IOAuth2Client $client, $scope = null, IOAuth2ResourceOwner $resourceOwner = null) {
 
         $token = $this->generator->getRandomString(20);
         $key   = $this->generator->getRandomString(10);
@@ -24,7 +25,7 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
         if($token === false || $key === false) {
             throw new OAuth2InternalServerErrorException('access_token_creation_error', 'An error has occured during the creation of the token.');
         }
-        $this->accessTokens[$token] = new OAuth2MACAccessToken($client, $token, $key, $algo, time() + $this->getLifetime($client), $scope, $data);
+        $this->accessTokens[$token] = new OAuth2MACAccessToken($client, $token, $key, $algo, time() + $this->getLifetime($client), $scope, $resourceOwner);
         return $this->accessTokens[$token];
         
     }

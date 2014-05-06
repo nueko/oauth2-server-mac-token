@@ -3,25 +3,28 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b1d9ed1e0fe0036d7d3117aad029f513",
+    "hash": "96735e823fa1e95e907588decc8307e3",
     "packages": [
         {
             "name": "spomky-labs/oauth2-interface",
-            "version": "v1.0.0-alpha1",
+            "version": "v1.0.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-interface.git",
-                "reference": "e55c100f36272e17312629d63d457da1bcd2ccc7"
+                "reference": "7b9c71933c1349532d9137c0aa4af80c2927282c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-interface/zipball/e55c100f36272e17312629d63d457da1bcd2ccc7",
-                "reference": "e55c100f36272e17312629d63d457da1bcd2ccc7",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-interface/zipball/7b9c71933c1349532d9137c0aa4af80c2927282c",
+                "reference": "7b9c71933c1349532d9137c0aa4af80c2927282c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "symfony/http-foundation": "~2.1"
+            },
+            "suggest": {
+                "oauth2-server": "A versatile OAuth2 Server"
             },
             "type": "library",
             "extra": {
@@ -49,25 +52,25 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-05-03 10:26:51"
+            "time": "2014-05-06 10:01:27"
         },
         {
             "name": "spomky-labs/oauth2-server",
-            "version": "dev-master",
+            "version": "v1.0.0-alpha4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-server.git",
-                "reference": "020eb1fc18f70fbac1b2fdc57290717a6d0f6f30"
+                "reference": "a92f77eb9d1c01e5adeaebe440c44546bcde432b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/020eb1fc18f70fbac1b2fdc57290717a6d0f6f30",
-                "reference": "020eb1fc18f70fbac1b2fdc57290717a6d0f6f30",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/a92f77eb9d1c01e5adeaebe440c44546bcde432b",
+                "reference": "a92f77eb9d1c01e5adeaebe440c44546bcde432b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "spomky-labs/oauth2-interface": "1.0.*@dev"
+                "spomky-labs/oauth2-interface": "1.0.*@beta"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.*",
@@ -111,7 +114,7 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-05-04 09:08:35"
+            "time": "2014-05-06 10:30:49"
         },
         {
             "name": "symfony/http-foundation",
@@ -1335,8 +1338,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "spomky-labs/oauth2-server": 20,
-        "spomky-labs/oauth2-interface": 15,
+        "spomky-labs/oauth2-server": 15,
+        "spomky-labs/oauth2-interface": 10,
         "satooshi/php-coveralls": 20
     },
     "platform": [
