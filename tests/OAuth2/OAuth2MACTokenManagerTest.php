@@ -38,7 +38,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
             if(!$e instanceof OAuth2InternalServerErrorException){
                 throw $e;
             }
-            $this->assertSame('access_token_creation_error', $e->getMessage());
+            $this->assertSame('token_creation_error', $e->getMessage());
             $this->assertSame("An error has occured during the creation of the token.",$e->getDescription());
         }
 
