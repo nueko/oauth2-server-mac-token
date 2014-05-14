@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "spomky-labs/oauth2-interface",
-            "version": "v1.0.0-beta5",
+            "version": "v1.0.0-beta12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-interface.git",
-                "reference": "7b9c71933c1349532d9137c0aa4af80c2927282c"
+                "reference": "935fe942be8c9ec12a2d66a9484d2cd503e83ce8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-interface/zipball/7b9c71933c1349532d9137c0aa4af80c2927282c",
-                "reference": "7b9c71933c1349532d9137c0aa4af80c2927282c",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-interface/zipball/935fe942be8c9ec12a2d66a9484d2cd503e83ce8",
+                "reference": "935fe942be8c9ec12a2d66a9484d2cd503e83ce8",
                 "shasum": ""
             },
             "require": {
@@ -24,7 +24,7 @@
                 "symfony/http-foundation": "~2.1"
             },
             "suggest": {
-                "oauth2-server": "A versatile OAuth2 Server"
+                "spomky-labs/oauth2-server": "A versatile OAuth2 Server"
             },
             "type": "library",
             "extra": {
@@ -52,20 +52,20 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-05-06 10:01:27"
+            "time": "2014-05-14 19:12:23"
         },
         {
             "name": "spomky-labs/oauth2-server",
-            "version": "v1.0.0-alpha4",
+            "version": "v1.0.0-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-server.git",
-                "reference": "a92f77eb9d1c01e5adeaebe440c44546bcde432b"
+                "reference": "4c16373b74ed0f4286eaf2b9c0823f628d2109ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/a92f77eb9d1c01e5adeaebe440c44546bcde432b",
-                "reference": "a92f77eb9d1c01e5adeaebe440c44546bcde432b",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/4c16373b74ed0f4286eaf2b9c0823f628d2109ec",
+                "reference": "4c16373b74ed0f4286eaf2b9c0823f628d2109ec",
                 "shasum": ""
             },
             "require": {
@@ -77,16 +77,15 @@
                 "satooshi/php-coveralls": "dev-master"
             },
             "suggest": {
-                "oauth2-server-authcode-grant-type": "Authorization Code Grant Type for your OAuth2 Server",
-                "oauth2-server-bearer-token": "Bearer Token support for your OAuth2 Server",
-                "oauth2-server-client-credentials-grant-type": "Client Credentials Grant Type for your OAuth2 Server",
-                "oauth2-server-defuse-generator": "An unbiased random string generator (requires Mcrypt extension).",
-                "oauth2-server-implicit-grant-type": "Implicit Grant Type for your OAuth2 Server",
-                "oauth2-server-mac-token": "MAC Token support for your OAuth2 Server",
-                "oauth2-server-password-client": "Password Client Support for your OAuth2 Server",
-                "oauth2-server-refresh-token-grant-type": "Refresh Token Grant Type for your OAuth2 Server",
-                "oauth2-server-resource-owner-password-credentials-grant-type": "Resource Owner Password Credentials Grant Type for your OAuth2 Server",
-                "oauth2-server-x509-client": "X509 Client Support for your OAuth2 Server"
+                "spomky-labs/oauth2-server-authcode-grant-type": "Authorization Code Grant Type for your OAuth2 Server",
+                "spomky-labs/oauth2-server-bearer-token": "Bearer Token for your OAuth2 Server",
+                "spomky-labs/oauth2-server-client-credentials-grant-type": "Client Credentials Grant Type for your OAuth2 Server",
+                "spomky-labs/oauth2-server-implicit-grant-type": "Implicit Grant Type for your OAuth2 Server",
+                "spomky-labs/oauth2-server-mac-token": "MAC Token for your OAuth2 Server",
+                "spomky-labs/oauth2-server-password-client": "Password Client for your OAuth2 Server",
+                "spomky-labs/oauth2-server-refresh-token-grant-type": "Refresh Token Grant Type for your OAuth2 Server",
+                "spomky-labs/oauth2-server-resource-owner-password-credentials-grant-type": "Resource Owner Password Credentials Grant Type for your OAuth2 Server",
+                "spomky-labs/oauth2-server-x509-client": "X509 Client for your OAuth2 Server"
             },
             "type": "library",
             "extra": {
@@ -114,7 +113,7 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-05-06 10:30:49"
+            "time": "2014-05-14 21:54:37"
         },
         {
             "name": "symfony/http-foundation",
@@ -175,16 +174,16 @@
     "packages-dev": [
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.0",
+            "version": "v3.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108"
+                "reference": "92d9934f2fca1da15178c91239576ae26e505e60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/e4d12d7d6acccf75a5e504114e2df9195e494108",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/92d9934f2fca1da15178c91239576ae26e505e60",
+                "reference": "92d9934f2fca1da15178c91239576ae26e505e60",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +262,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-04-23 21:43:40"
+            "time": "2014-05-07 17:04:22"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -688,12 +687,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/satooshi/php-coveralls.git",
-                "reference": "9fce7133a1d79b19f38a8fc975009703468172f0"
+                "reference": "b7271847c84d160f5b0aae83e45c225e8ffc96f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/9fce7133a1d79b19f38a8fc975009703468172f0",
-                "reference": "9fce7133a1d79b19f38a8fc975009703468172f0",
+                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/b7271847c84d160f5b0aae83e45c225e8ffc96f4",
+                "reference": "b7271847c84d160f5b0aae83e45c225e8ffc96f4",
                 "shasum": ""
             },
             "require": {
@@ -755,7 +754,7 @@
                 "github",
                 "test"
             ],
-            "time": "2014-03-27 16:05:26"
+            "time": "2014-05-14 13:09:37"
         },
         {
             "name": "sebastian/comparator",
