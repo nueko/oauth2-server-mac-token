@@ -56,16 +56,16 @@
         },
         {
             "name": "spomky-labs/oauth2-server",
-            "version": "v1.0.0-alpha8",
+            "version": "v1.0.0-alpha9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-server.git",
-                "reference": "4c16373b74ed0f4286eaf2b9c0823f628d2109ec"
+                "reference": "4b5352b079b87541768162583141878f5b949987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/4c16373b74ed0f4286eaf2b9c0823f628d2109ec",
-                "reference": "4c16373b74ed0f4286eaf2b9c0823f628d2109ec",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/4b5352b079b87541768162583141878f5b949987",
+                "reference": "4b5352b079b87541768162583141878f5b949987",
                 "shasum": ""
             },
             "require": {
@@ -113,7 +113,7 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-05-14 21:54:37"
+            "time": "2014-05-17 14:49:10"
         },
         {
             "name": "symfony/http-foundation",

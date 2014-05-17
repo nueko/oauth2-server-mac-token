@@ -9,7 +9,7 @@ use OAuth2\Util\OAuth2Header;
 use OAuth2\Exception\OAuth2InternalServerErrorException;
 use OAuth2\ResourceOwner\IOAuth2ResourceOwner;
 
-class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IOAuth2AccessTokenManager
+abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IOAuth2AccessTokenManager
 {
     protected function getToken(Request $request) {
         
@@ -25,8 +25,10 @@ class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IO
         if($token === false || $key === false) {
             throw new OAuth2InternalServerErrorException('token_creation_error', 'An error has occured during the creation of the token.');
         }
-        $this->accessTokens[$token] = new OAuth2MACAccessToken($client, $token, $key, $algo, time() + $this->getLifetime($client), $scope, $resourceOwner);
-        return $this->accessTokens[$token];
+        $token = new OAuth2MACAccessToken($client, $token, $key, $algo, time() + $this->getLifetime($client), $scope, $resourceOwner);
+
+        $this->addAccessToken($token);
+        return $token;
         
     }
 

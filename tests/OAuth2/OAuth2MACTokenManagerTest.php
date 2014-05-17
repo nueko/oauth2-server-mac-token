@@ -4,7 +4,7 @@ namespace OAuth2;
 
 use OAuth2\Token\IOAuth2MACAccessToken;
 use OAuth2\Token\OAuth2MACAccessToken;
-use OAuth2\Token\OAuth2MACAccessTokenManager;
+use OAuth2\Token\OAuth2MACAccessTokenManagerStub;
 use OAuth2\Token\OAuth2DummyAccessToken;
 use OAuth2\Client\OAuth2PublicClient;
 use OAuth2\Configuration\OAuth2Configuration;
@@ -19,9 +19,9 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
     public function testManagerToken()
     {
         $client = new OAuth2PublicClient("foo");
-        $manager1 = new OAuth2MACAccessTokenManager(new OAuth2Configuration, new OAuth2TestGenerator);
-        $manager2 = new OAuth2MACAccessTokenManager(new OAuth2Configuration(array('mac_access_token_algorithm'=>'sha256')), new OAuth2TestGenerator);
-        $manager3 = new OAuth2MACAccessTokenManager(new OAuth2Configuration, new OAuth2DummyGenerator);
+        $manager1 = new OAuth2MACAccessTokenManagerStub(new OAuth2Configuration, new OAuth2TestGenerator);
+        $manager2 = new OAuth2MACAccessTokenManagerStub(new OAuth2Configuration(array('mac_access_token_algorithm'=>'sha256')), new OAuth2TestGenerator);
+        $manager3 = new OAuth2MACAccessTokenManagerStub(new OAuth2Configuration, new OAuth2DummyGenerator);
 
         $this->assertSame('MAC', $manager1->getAccessTokenType());
 
@@ -50,7 +50,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testAccessToken(IOAuth2MACAccessToken $token, Request $request, $expectedSameToken, $expectedIsValid = null)
     {
-        $support = new OAuth2MACAccessTokenManager(new OAuth2Configuration(), new OAuth2TestGenerator);
+        $support = new OAuth2MACAccessTokenManagerStub(new OAuth2Configuration(), new OAuth2TestGenerator);
 
         $tokenId = $support->findAccessToken($request);
         $isValid = $support->isAccessTokenValid($request, $token);
