@@ -17,21 +17,6 @@ abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager impl
         return isset($values['id'])?array($values['id']):null;
     }
 
-    public function createAccessToken(IOAuth2Client $client, $scope = null, IOAuth2ResourceOwner $resourceOwner = null) {
-
-        $token = $this->generator->getRandomString(20);
-        $key   = $this->generator->getRandomString(10);
-        $algo  = $this->configuration->getOption('mac_access_token_algorithm', 'sha1');
-        if($token === false || $key === false) {
-            throw new OAuth2InternalServerErrorException('token_creation_error', 'An error has occured during the creation of the token.');
-        }
-        $token = new OAuth2MACAccessToken($client, $token, $key, $algo, time() + $this->getLifetime($client), $scope, $resourceOwner);
-
-        $this->addAccessToken($token);
-        return $token;
-        
-    }
-
     public function getAccessTokenType() {
         return 'MAC';
     }

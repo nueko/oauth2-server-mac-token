@@ -41,10 +41,40 @@ The preferred way to install this bundle is to rely on Composer. Just check on P
 
 ##Step 2: Create your classes##
 
-This library provides classes that you can use as it is or you can extend with your own methods.
+This library provides an abstract class to ease your work: `OAuth2\Token\OAuth2MCAccessTokenManager`.
 
-* Manager Class: `OAuth2\Token\OAuth2MACAccessTokenManager`
-* Access Token Class: `OAuth2\Token\OAuth2MACAccessToken`
+You just have to implement functions to create, store, retreive your codes and mark them as used.
+In the following example, we use `OAuth2MACAccessToken` object and an array.
+
+    <?php
+
+    namespace ACME\MyOAuth2Server\Token;
+
+    use OAuth2\Client\IOAuth2Client;
+    use OAuth2\Token\OAuth2MACAccessToken;
+    use OAuth2\Token\OAuth2MACAccessTokenManager;
+    use OAuth2\ResourceOwner\IOAuth2ResourceOwner;
+
+    class MyAccessTokenManager extends OAuth2MACAccessTokenManager
+    {
+        protected $accessTokens = array();
+
+        protected function addAccessToken($token, $expiresAt, IOAuth2Client $client, $scope = null, IOAuth2ResourceOwner $resourceOwner = null) {
+
+            $key   = $this->generator->getRandomString($this->configuration->getOption('mac_access_token_key_length', 10));
+            $algo  = $this->configuration->getOption('mac_access_token_algorithm', 'sha1');
+
+            $access_token = new OAuth2MACAccessToken($client, $token, $key, $algo, $expiresAt, $scope, $resourceOwner);
+
+            $this->accessTokens[$token] = $access_token;
+            return $access_token;
+        }
+
+        protected function getAccessToken($token) {
+
+            return isset($this->accessTokens[$token])?$this->accessTokens[$token]:null;
+        }
+    }
 
 
 ##Step 3: Add the token type to your OAuth2 Server##
@@ -56,12 +86,30 @@ To use this token type, just create a new manager object and use it with your se
     namespace ACME\MyOAuth2Server
 
     use OAuth2\OAuth2;
-    use OAuth2\Token\OAuth2MACAccessToken;
+    use ACME\MyOAuth2Server\MyAccessTokenManager;
 
     …
 
     //Create your manager. Our class needs a configuration object (for token lifetime, length…) and a token generator.
-    $accessTokenManager = new OAuth2MACAccessToken($configuration, $generator);
+    $accessTokenManager = new MyAccessTokenManager($configuration, $generator);
 
     //Start your server
     $server = new OAuth2($configuration, $clientManagers, $supportedGrantTypes, $scopeManager, $accessTokenManager, $refreshTokenManager);
+
+# Configuration #
+
+This attess token type adds new configuration options:
+
+* `mac_access_token_algorithm` (string, default='sha1'): the algorithm of the access token. Only `sha1` and `sha256` supported.
+* `mac_access_token_key_length` (integer>0, default=10): the key length associated to the access token.
+
+Example:
+
+    <?php
+
+    use OAuth2\Configuration\OAuth2Configuration;
+
+    $configuration = new OAuth2Configuration(array(
+        'mac_access_token_algorithm' => 'sha256',
+        'mac_access_token_key_length' => 15
+    ));
