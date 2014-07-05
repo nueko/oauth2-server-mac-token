@@ -12,15 +12,14 @@
         }
     ],
     "require": {
-        "spomky-labs/oauth2-server": "1.0.*@alpha",
-        "spomky-labs/oauth2-interface": "1.0.*@beta"
+        "spomky-labs/oauth2-server": "1.0.*@beta"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "*"
     },
     "autoload": {
-        "psr-0": { "OAuth2": "lib/" }
+        "psr-4": { "OAuth2\\Token\\": "lib/" }
     },
     "extra": {
         "branch-alias": {
