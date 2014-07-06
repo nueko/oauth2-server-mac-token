@@ -150,8 +150,12 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
     protected function createAccessTokenManager(array $access_token = null)
     {
         $manager = $this->getMockBuilder('OAuth2\Token\OAuth2MACAccessTokenManager')
-            ->setMethods(array('getConfiguration', 'addAccessToken', 'getAccessToken', 'getGenerator'))
+            ->setMethods(array('getExceptionManager', 'getConfiguration', 'addAccessToken', 'getAccessToken', 'getGenerator'))
             ->getMock();
+
+        $manager->expects($this->any())
+            ->method('getExceptionManager')
+            ->will($this->returnValue($this->createExceptionManager()));
 
         if (null !== $access_token)
         {
@@ -218,5 +222,18 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
         }
 
         return $request;
+    }
+
+    protected function createExceptionManager()
+    {
+        $manager = $this->getMockBuilder('OAuth2\Exception\OAuth2ExceptionManager')
+            ->setMethods(array('getUri'))
+            ->getMock();
+
+        $manager->expects($this->any())
+            ->method('getUri')
+            ->will($this->returnValue('http://foo.bar/?error='));
+
+        return $manager;
     }
 }
