@@ -11,6 +11,14 @@ use OAuth2\Util\OAuth2Header;
 abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IOAuth2AccessTokenManager
 {
     /**
+     * {@inheritdoc}
+     */
+    public function getAccessTokenType()
+    {
+        return 'MAC';
+    }
+
+    /**
      * Get the list of methods to find the access token
      * This method can be override to add new way to find an access token.
      * These methods are those officialy supported by the RFC6749

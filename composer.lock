@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fdeb9697910b94aae148cd9d14886cc0",
+    "hash": "1087f82721c838849d0f1cdf49d34ce3",
     "packages": [
         {
             "name": "spomky-labs/oauth2-server",
-            "version": "v1.0.1",
+            "version": "2.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-server.git",
-                "reference": "c236a5f901c637deac2fb43c0ead12f8535f6bc2"
+                "reference": "2f07e3482c430871a573d002324a009c817b30e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/c236a5f901c637deac2fb43c0ead12f8535f6bc2",
-                "reference": "c236a5f901c637deac2fb43c0ead12f8535f6bc2",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/2f07e3482c430871a573d002324a009c817b30e0",
+                "reference": "2f07e3482c430871a573d002324a009c817b30e0",
                 "shasum": ""
             },
             "require": {
@@ -30,20 +30,22 @@
                 "satooshi/php-coveralls": "*"
             },
             "suggest": {
-                "spomky-labs/oauth2-server-authcode-grant-type": "Authorization Code Grant Type for your OAuth2 Server",
-                "spomky-labs/oauth2-server-bearer-token": "Bearer Token for your OAuth2 Server",
-                "spomky-labs/oauth2-server-client-credentials-grant-type": "Client Credentials Grant Type for your OAuth2 Server",
-                "spomky-labs/oauth2-server-implicit-grant-type": "Implicit Grant Type for your OAuth2 Server",
-                "spomky-labs/oauth2-server-mac-token": "MAC Token for your OAuth2 Server",
-                "spomky-labs/oauth2-server-password-client": "Confidential Client secured by password for your OAuth2 Server",
-                "spomky-labs/oauth2-server-refresh-token-grant-type": "Refresh Token Grant Type for your OAuth2 Server",
-                "spomky-labs/oauth2-server-resource-owner-password-credentials-grant-type": "Resource Owner Password Credentials Grant Type for your OAuth2 Server",
-                "spomky-labs/oauth2-server-x509-client": "X509 Client for your OAuth2 Server"
+                "spomky-labs/oauth2-server-authcode-grant-type": "Authorization Code Grant Type",
+                "spomky-labs/oauth2-server-authorization-endpoint": "Authorization Endpoint",
+                "spomky-labs/oauth2-server-bearer-token": "Bearer Token",
+                "spomky-labs/oauth2-server-client-credentials-grant-type": "Client Credentials Grant Type",
+                "spomky-labs/oauth2-server-implicit-grant-type": "Implicit Grant Type",
+                "spomky-labs/oauth2-server-mac-token": "MAC Token",
+                "spomky-labs/oauth2-server-password-client": "Confidential Client secured by password",
+                "spomky-labs/oauth2-server-refresh-token-grant-type": "Refresh Token Grant Type",
+                "spomky-labs/oauth2-server-resource-owner-password-credentials-grant-type": "Resource Owner Password Credentials Grant Type",
+                "spomky-labs/oauth2-server-token-endpoint": "Token Endpoint",
+                "spomky-labs/oauth2-server-x509-client": "X509 Client"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -66,7 +68,7 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-07-08 21:18:55"
+            "time": "2014-07-12 12:13:38"
         },
         {
             "name": "symfony/http-foundation",
@@ -1288,9 +1290,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "spomky-labs/oauth2-server": 20
+    },
     "platform": [
 
     ],
