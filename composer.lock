@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/oauth2-server.git",
-                "reference": "2f07e3482c430871a573d002324a009c817b30e0"
+                "reference": "e344c800dfef9146be28a12f398c39b239090823"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/2f07e3482c430871a573d002324a009c817b30e0",
-                "reference": "2f07e3482c430871a573d002324a009c817b30e0",
+                "url": "https://api.github.com/repos/Spomky-Labs/oauth2-server/zipball/e344c800dfef9146be28a12f398c39b239090823",
+                "reference": "e344c800dfef9146be28a12f398c39b239090823",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,7 @@
             "keywords": [
                 "oauth2"
             ],
-            "time": "2014-07-12 12:13:38"
+            "time": "2014-07-14 06:33:10"
         },
         {
             "name": "symfony/http-foundation",
