@@ -2,11 +2,11 @@
 
 namespace OAuth2\Token;
 
-use OAuth2\Token\OAuth2AccessToken;
-use OAuth2\Token\IOAuth2MACAccessToken;
-use OAuth2\Exception\OAuth2NotImplementedException;
+use OAuth2\Token\AccessToken;
+use OAuth2\Token\MACAccessTokenInterface;
+use OAuth2\Exception\NotImplementedException;
 
-abstract class OAuth2MACAccessToken extends OAuth2AccessToken implements IOAuth2MACAccessToken
+abstract class MACAccessToken extends AccessToken implements MACAccessTokenInterface
 {
     public function getType()
     {
@@ -32,7 +32,7 @@ abstract class OAuth2MACAccessToken extends OAuth2AccessToken implements IOAuth2
             case 'sha256':
                 return 'hmac-sha-256';
             default:
-                throw new OAuth2NotImplementedException('invalid_algorithm', "The algorithm '$algorithm' is not implemented");
+                throw new NotImplementedException('invalid_algorithm', "The algorithm '$algorithm' is not implemented");
         }
     }
 }

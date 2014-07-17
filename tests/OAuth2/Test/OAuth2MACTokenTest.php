@@ -35,7 +35,7 @@ class OAuth2MACTokenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException OAuth2\Exception\OAuth2NotImplementedException invalid_algorithm
+     * @expectedException OAuth2\Exception\NotImplementedException invalid_algorithm
      */
     public function testBadAlgorithm()
     {
@@ -46,7 +46,7 @@ class OAuth2MACTokenTest extends \PHPUnit_Framework_TestCase
 
     protected function createAccessToken($token = null, $getExpiresIn = null, $key = null, $algorithm = null, $scope = null)
     {
-        $accessToken = $this->getMockBuilder('OAuth2\Token\OAuth2MACAccessToken')
+        $accessToken = $this->getMockBuilder('OAuth2\Token\MACAccessToken')
             ->setMethods(array('getToken', 'getExpiresIn', 'getClient', 'getScope', 'getResourceOwner', 'hasExpired', 'getKey', 'getAlgorithm'))
             ->getMock();
 

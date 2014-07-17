@@ -2,11 +2,11 @@
 
 namespace OAuth2\Token;
 
-use OAuth2\Token\IOAuth2AccessToken;
+use OAuth2\Token\AccessTokenInterface;
 
 /**
  */
-interface IOAuth2MACAccessToken extends IOAuth2AccessToken
+interface MACAccessTokenInterface extends AccessTokenInterface
 {
     /**
      * @return string

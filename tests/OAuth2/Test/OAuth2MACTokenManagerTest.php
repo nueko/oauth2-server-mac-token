@@ -2,7 +2,6 @@
 
 namespace OAuth2\Test;
 
-use OAuth2\Token\OAuth2MACAccessTokenManager;
 use Symfony\Component\HttpFoundation\Request;
 
 class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
@@ -23,7 +22,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
         ));
 
         $result = $manager->findAccessToken($this->createRequest('/', 'GET', array(), null, array('AUTHORIZATION'=>'MAC id="foo"')));
-        $this->assertInstanceOf('OAuth2\Token\OAuth2MACAccessToken', $result);
+        $this->assertInstanceOf('OAuth2\Token\MACAccessToken', $result);
         $this->assertSame($token, $result);
     }
 
@@ -149,7 +148,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
 
     protected function createAccessTokenManager(array $access_token = null)
     {
-        $manager = $this->getMockBuilder('OAuth2\Token\OAuth2MACAccessTokenManager')
+        $manager = $this->getMockBuilder('OAuth2\Token\MACAccessTokenManager')
             ->setMethods(array('getExceptionManager', 'getConfiguration', 'addAccessToken', 'getAccessToken', 'getGenerator'))
             ->getMock();
 
@@ -169,7 +168,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
 
     protected function createAccessToken()
     {
-        $accessToken = $this->getMockBuilder('OAuth2\Token\OAuth2AccessToken')
+        $accessToken = $this->getMockBuilder('OAuth2\Token\AccessToken')
             ->setMethods(array('getToken', 'getType', 'getExpiresIn', 'getClient', 'getScope', 'getResourceOwner', 'hasExpired'))
             ->getMock();
 
@@ -178,7 +177,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
 
     protected function createMACAccessToken($token = null, $hasExpired = null, $key = null, $algorithm = null)
     {
-        $accessToken = $this->getMockBuilder('OAuth2\Token\OAuth2MACAccessToken')
+        $accessToken = $this->getMockBuilder('OAuth2\Token\MACAccessToken')
             ->setMethods(array('getToken', 'getExpiresIn', 'getClient', 'getScope', 'getResourceOwner', 'hasExpired', 'getKey', 'getAlgorithm'))
             ->getMock();
 
@@ -226,7 +225,7 @@ class OAuth2MACTokenManagerTest extends \PHPUnit_Framework_TestCase
 
     protected function createExceptionManager()
     {
-        $manager = $this->getMockBuilder('OAuth2\Exception\OAuth2ExceptionManager')
+        $manager = $this->getMockBuilder('OAuth2\Exception\ExceptionManager')
             ->setMethods(array('getUri'))
             ->getMock();
 

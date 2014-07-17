@@ -2,13 +2,14 @@
 
 namespace OAuth2\Token;
 
-use OAuth2\Token\IOAuth2AccessToken;
-use OAuth2\Token\IOAuth2MACAccessToken;
-use OAuth2\Token\IOAuth2AccessTokenManager;
+use OAuth2\Token\AccessTokenManager;
+use OAuth2\Token\AccessTokenInterface;
+use OAuth2\Token\MACAccessTokenInterface;
+use OAuth2\Token\AccessTokenManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use OAuth2\Util\OAuth2Header;
+use OAuth2\Util\Header;
 
-abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager implements IOAuth2AccessTokenManager
+abstract class MACAccessTokenManager extends AccessTokenManager implements AccessTokenManagerInterface
 {
     /**
      * {@inheritdoc}
@@ -66,10 +67,10 @@ abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager impl
         return $values;
     }
 
-    public function isAccessTokenValid(Request $request, IOAuth2AccessToken $token)
+    public function isAccessTokenValid(Request $request, AccessTokenInterface $token)
     {
 
-        if( !$token instanceof IOAuth2MACAccessToken)
+        if( !$token instanceof MACAccessTokenInterface)
         {
             return false;
         }
@@ -105,7 +106,7 @@ abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager impl
 
     protected function getMACTokenFromHeaders(Request $request)
     {
-        $header = OAuth2Header::getParameter($request, 'AUTHORIZATION');
+        $header = Header::getParameter($request, 'AUTHORIZATION');
 
         if (!$header)
         {
@@ -129,7 +130,7 @@ abstract class OAuth2MACAccessTokenManager extends OAuth2AccessTokenManager impl
         return $values;
     }
 
-    protected function generateMac(Request $request, IOAuth2MACAccessToken $token, array $values)
+    protected function generateMac(Request $request, MACAccessTokenInterface $token, array $values)
     {
 
         $nonce = $values['nonce'];
