@@ -18,6 +18,9 @@
         "phpunit/phpunit": "4.*",
         "satooshi/php-coveralls": "*"
     },
+    "suggest": {
+        "spomky-labs/oauth2-server-defuse-generator": "An unbiased random string generator (requires Mcrypt extension)."
+    },
     "autoload": {
         "psr-4": { "OAuth2\\Token\\": "lib/" }
     },
