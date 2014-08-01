@@ -2,11 +2,10 @@
 
 namespace OAuth2\Token;
 
-use OAuth2\Token\AccessToken;
 use OAuth2\Token\MACAccessTokenInterface;
 use OAuth2\Exception\NotImplementedException;
 
-abstract class MACAccessToken extends AccessToken implements MACAccessTokenInterface
+abstract class MACAccessToken implements MACAccessTokenInterface
 {
     public function getType()
     {
@@ -15,7 +14,11 @@ abstract class MACAccessToken extends AccessToken implements MACAccessTokenInter
 
     public function toArray()
     {
-        return parent::toArray()+array(
+        return array(
+           'access_token' => $this->getToken(),
+           'token_type' => $this->getType(),
+           'expires_in' => $this->getExpiresIn(),
+           'scope' => $this->getScope()
            'mac_key' => $this->getKey(),
            'mac_algorithm' => $this->convertAlgorithm($this->getAlgorithm()),
         );
