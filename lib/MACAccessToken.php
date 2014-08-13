@@ -18,7 +18,7 @@ abstract class MACAccessToken implements MACAccessTokenInterface
            'access_token' => $this->getToken(),
            'token_type' => $this->getType(),
            'expires_in' => $this->getExpiresIn(),
-           'scope' => $this->getScope()
+           'scope' => $this->getScope(),
            'mac_key' => $this->getKey(),
            'mac_algorithm' => $this->convertAlgorithm($this->getAlgorithm()),
         );
