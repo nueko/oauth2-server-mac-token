@@ -12,12 +12,9 @@
         }
     ],
     "require": {
-        "spomky-labs/oauth2-interface": "2.0.*@dev",
-        "spomky-labs/oauth2-server-access-token-manager": "2.0.*@dev",
-        "spomky-labs/oauth2-server-utils": "2.0.*@dev"
+        "spomky-labs/oauth2-server-access-token-manager": "2.0.*"
     },
     "require-dev": {
-        "behat/behat": "3.*"
     },
     "suggest": {
         "spomky-labs/oauth2-server-defuse-generator": "An unbiased random string generator (requires Mcrypt extension)."
